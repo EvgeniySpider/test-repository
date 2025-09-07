@@ -24,25 +24,46 @@ def check_winner(board):
         return board[1][1]
     return None
 
-def play(board):
+
+def check_draw(board):
+    # Проверяем, есть ли пустые клетки
+    for row in board:
+        if ' ' in row:
+            return False  # Есть пустые клетки, игра продолжается
+    return True  # Все клетки заполнены, возможна ничья
+
+
+def play(board = None):
+    if board is None:
+        raise 'Нужна таблица!'
+    
     while True:
+
+        if check_draw(board):
+            print('Ничья!')
+            return
         print_board(board)
-        players_1 = int(input('Игрок 1. Введите позицию 1-9: '))
-        players_2 = int(input('Игрок 1. Введите позицию 1-9: '))
+        players_1 = int(input('Игрок 1. Введите ряд 1-3: ')) -1
+        players_2 = int(input('Игрок 1. Введите позицию 1-9: ')) -1
+        
         board[players_1][players_2] = 'X'
         print_board(board)
+        
+        
         print_board(board)
+
         if check_winner(board):
             print_board(board)
+            print('Игрок №1 = X победил!')
             break
-        player_3 = int(input('Игрок 2. Введите позицию 1-9: '))
-        player_4 = int(input('Игрок 2. Введите позицию 1-9: '))
-        
-        
+
+        player_3 = int(input('Игрок 2. Введите ряд 1-3: ')) -1
+        player_4 = int(input('Игрок 2. Введите позицию 1-9: ')) -1
         board[player_3][player_4] = 'Y'
        
         if check_winner(board):
             print_board(board)
+            print('Игрок №2 = Y победил!')
             return
 
 play(board)
