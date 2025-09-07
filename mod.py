@@ -1,5 +1,6 @@
 board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
 
+
 def print_board(board):
     print("\n   |   |   ")
     print(f" {board[0][0]} | {board[0][1]} | {board[0][2]} ")
@@ -10,6 +11,7 @@ def print_board(board):
     print("   |   |   ")
     print(f" {board[2][0]} | {board[2][1]} | {board[2][2]} ")
     print("   |   |   \n")
+
 
 def check_winner(board):
     for row in board:
@@ -33,43 +35,76 @@ def check_draw(board):
     return True  # Все клетки заполнены, возможна ничья
 
 
-def play(board = None):
+def play(board=None):
     if board is None:
-        raise 'Нужна таблица!'
-    
+        raise TypeError('Нужна таблица!')
+
     while True:
-    
         print_board(board)
-        player_x = int(input('Игрок №1 - X. Введите номер клетки 1-9: '))
-        
-        if player_x > 0 and player_x < 4:
-            board[0][player_x - 1] = 'X'
-        elif player_x < 7:
-            board[1][player_x - 4] = 'X'
-        elif player_x < 10:
-            board[2][player_x - 7] = 'X'
+
+        # Ход игрока X
+        while True:
+            try:
+                player_x = int(
+                    input('Игрок №1 - X. Введите номер клетки 1-9: '))
+
+                if player_x < 1 or player_x > 9:
+                    print('Ошибка: введите число от 1 до 9!')
+                    continue
+
+                row = (player_x - 1) // 3
+                col = (player_x - 1) % 3
+
+                if board[row][col] != ' ':
+                    print('Эта ячейка уже занята, выберите другую!')
+                    continue
+
+                board[row][col] = 'X'
+                break
+
+            except ValueError:
+                print('Ошибка: введите число!')
+
         print_board(board)
-        
+
         if check_winner(board):
-            print_board(board)
             print('Игрок №1 победил!')
-            break
-        elif check_draw(board):
+            return
+
+        if check_draw(board):
             print('Игра закончилась вничью!')
-        
-        player_o = int(input('Игрок №2 - O. Введите номер клетки 1-9: '))
-        if player_o > 0 and player_o < 4:
-            board[0][player_o - 1] = 'O'
-        elif player_o < 7:
-            board[1][player_o - 4] = 'O'
-        elif player_o < 10:
-            board[2][player_o - 7] = 'O'
-        print_board(board)
+            return
+
+        # Ход игрока O
+        while True:
+            try:
+                player_o = int(
+                    input('Игрок №2 - O. Введите номер клетки 1-9: '))
+
+                if player_o < 1 or player_o > 9:
+                    print('Ошибка: введите число от 1 до 9!')
+                    continue
+
+                row = (player_o - 1) // 3
+                col = (player_o - 1) % 3
+
+                if board[row][col] != ' ':
+                    print('Эта ячейка уже занята, выберите другую!')
+                    continue
+
+                board[row][col] = 'O'
+                break
+
+            except ValueError:
+                print('Ошибка: введите число!')
+
         if check_winner(board):
-            print_board(board)
             print('Игрок №2 победил!')
-            break
-        elif check_draw(board):
+            return
+
+        if check_draw(board):
             print('Игра закончилась вничью!')
+            return
+
 
 play(board)
