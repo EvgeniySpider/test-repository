@@ -27,11 +27,11 @@ def check_winner(board):
 
 
 def check_draw(board):
-    # Проверяем, есть ли пустые клетки
+
     for row in board:
         if ' ' in row:
-            return False  # Есть пустые клетки, игра продолжается
-    return True  # Все клетки заполнены, возможна ничья
+            return False
+    return True
 
 
 def play(board=None):
@@ -42,7 +42,6 @@ def play(board=None):
     while True:
         print_board(board)
 
-        # Ход игрока X
         while True:
             try:
                 player_x = int(
@@ -75,7 +74,6 @@ def play(board=None):
             print('Игра закончилась вничью!')
             break
 
-        # Ход игрока O
         while True:
             try:
                 player_o = int(
