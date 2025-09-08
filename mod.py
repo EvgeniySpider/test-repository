@@ -1,6 +1,5 @@
 
 
-
 def print_board(board):
     print("\n   |   |   ")
     print(f" {board[0][0]} | {board[0][1]} | {board[0][2]} ")
@@ -70,11 +69,11 @@ def play(board=None):
 
         if check_winner(board):
             print('Игрок №1 победил!')
-            return
+            break
 
         if check_draw(board):
             print('Игра закончилась вничью!')
-            return
+            break
 
         # Ход игрока O
         while True:
@@ -101,11 +100,18 @@ def play(board=None):
 
         if check_winner(board):
             print('Игрок №2 победил!')
-            return
+            break
 
         if check_draw(board):
             print('Игра закончилась вничью!')
-            return
+            break
+
+    ask_replay = input('Хотите сыграть ещё раз? ')
+    if ask_replay in ['да', 'yes', 'д', 'y']:
+        board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+        play()
+    else:
+        print('Всего доброго!')
 
 
 play()
