@@ -110,8 +110,7 @@ def play(board=None):
     if ask_replay in ['да', 'yes', 'д', 'y']:
         board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
         play()
-    else:
-        print('Всего доброго!')
+    print('Всего доброго!')
 
 
 play()
