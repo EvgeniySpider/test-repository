@@ -27,7 +27,6 @@ def check_winner(board):
 
 
 def check_draw(board):
-
     for row in board:
         if ' ' in row:
             return False
@@ -74,11 +73,11 @@ def play():
         print_board(board)
 
         if check_winner(board):
-            print('Игрок №1 победил!')
+            print('Игрок №1 победил!', "\U0001F60E")
             break
 
         if check_draw(board):
-            print('Игра закончилась вничью!')
+            print('Игра закончилась вничью!', "\U0001F602")
             break
 
         while True:
@@ -103,17 +102,17 @@ def play():
         print_board(board)
 
         if check_winner(board):
-            print('Игрок №2 победил!')
+            print('Игрок №2 победил!', "\U0001F60E")
             break
 
         if check_draw(board):
-            print('Игра закончилась вничью!')
+            print('Игра закончилась вничью!', "\U0001F602")
             break
 
-    ask_replay = input('Хотите сыграть ещё раз? ')
+    ask_replay = input('Хотите сыграть ещё раз? ').lower()
     if ask_replay in ['да', 'yes', 'д', 'y']:
-        board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
         play()
-    print('Всего доброго!')
+    else:
+        print('Хорошего дня', '\U0001F917')
 
 play()
