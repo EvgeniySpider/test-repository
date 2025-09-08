@@ -34,10 +34,8 @@ def check_draw(board):
     return True
 
 
-def play(board=None):
+def play():
     board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
-    if board is None:
-        raise TypeError('Нужна таблица!')
 
     while True:
         print_board(board)
