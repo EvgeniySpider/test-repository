@@ -1,4 +1,4 @@
-board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+
 
 
 def print_board(board):
@@ -36,6 +36,7 @@ def check_draw(board):
 
 
 def play(board=None):
+    board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
     if board is None:
         raise TypeError('Нужна таблица!')
 
@@ -107,4 +108,4 @@ def play(board=None):
             return
 
 
-play(board)
+play()
