@@ -34,6 +34,17 @@ def check_draw(board):
     return True
 
 
+def check_move(users_move):
+    if users_move < 1 or users_move > 9:
+            print('Ошибка: введите число от 1 до 9!')
+            return True
+    
+def check_cell (board, row, col):
+    if board[row][col] != ' ':
+        print('Эта ячейка уже занята, выберите другую!')
+        return True
+
+
 def play():
     board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
 
@@ -45,15 +56,13 @@ def play():
                 player_x = int(
                     input('Игрок №1 - X. Введите номер клетки 1-9: '))
 
-                if player_x < 1 or player_x > 9:
-                    print('Ошибка: введите число от 1 до 9!')
+                if check_move(player_x):
                     continue
 
                 row = (player_x - 1) // 3
                 col = (player_x - 1) % 3
 
-                if board[row][col] != ' ':
-                    print('Эта ячейка уже занята, выберите другую!')
+                if check_cell(board, row,col):
                     continue
 
                 board[row][col] = 'X'
@@ -77,15 +86,12 @@ def play():
                 player_o = int(
                     input('Игрок №2 - O. Введите номер клетки 1-9: '))
 
-                if player_o < 1 or player_o > 9:
-                    print('Ошибка: введите число от 1 до 9!')
+                if check_move(player_x):
                     continue
-
                 row = (player_o - 1) // 3
                 col = (player_o - 1) % 3
 
-                if board[row][col] != ' ':
-                    print('Эта ячейка уже занята, выберите другую!')
+                if check_cell(board, row,col):
                     continue
 
                 board[row][col] = 'O'
@@ -93,6 +99,8 @@ def play():
 
             except ValueError:
                 print('Ошибка: введите число!')
+                
+        print_board(board)
 
         if check_winner(board):
             print('Игрок №2 победил!')
@@ -107,6 +115,3 @@ def play():
         board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
         play()
     print('Всего доброго!')
-
-
-play()
