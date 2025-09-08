@@ -85,7 +85,7 @@ def play():
                     player_o = int(
                         input('Игрок №2 - O. Введите номер клетки 1-9: '))
 
-                    if check_move(player_x):
+                    if check_move(player_o):
                         continue
                     row = (player_o - 1) // 3
                     col = (player_o - 1) % 3
