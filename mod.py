@@ -34,12 +34,6 @@ def check_draw(board):
     return True
 
 
-def check_move(users_move):
-    if 1 < users_move > 9:
-        print('Ошибка: введите число от 1 до 9!')
-        return True
-
-
 def check_cell_move(board, row, col, users_move):
     if 1 < users_move > 9:
         print('Ошибка: введите число от 1 до 9!')
