@@ -28,18 +28,22 @@ def check_winner(board):
 
 def check_draw(board):
     for row in board:
-        if ' ' in row:        
+        if ' ' in row:
             return False
-    print('Игра закончилась вничью!', "\U0001F602")    
+    print('Игра закончилась вничью!', "\U0001F602")
     return True
 
 
 def check_move(users_move):
-    if users_move < 1 or users_move > 9:
-            print('Ошибка: введите число от 1 до 9!')
-            return True
-    
-def check_cell (board, row, col):
+    if 1 < users_move > 9:
+        print('Ошибка: введите число от 1 до 9!')
+        return True
+
+
+def check_cell_move(board, row, col, users_move):
+    if 1 < users_move > 9:
+        print('Ошибка: введите число от 1 до 9!')
+        return True
     if board[row][col] != ' ':
         print('Эта ячейка уже занята, выберите другую!')
         return True
@@ -56,13 +60,10 @@ def play():
                     player_x = int(
                         input('Игрок №1 - X. Введите номер клетки 1-9: '))
 
-                    if check_move(player_x):
-                        continue
-
                     row = (player_x - 1) // 3
                     col = (player_x - 1) % 3
 
-                    if check_cell(board, row,col):
+                    if check_cell_move(board, row, col, player_x):
                         continue
 
                     board[row][col] = 'X'
@@ -85,12 +86,10 @@ def play():
                     player_o = int(
                         input('Игрок №2 - O. Введите номер клетки 1-9: '))
 
-                    if check_move(player_o):
-                        continue
                     row = (player_o - 1) // 3
                     col = (player_o - 1) % 3
 
-                    if check_cell(board, row,col):
+                    if check_cell_move(board, row, col, player_o):
                         continue
 
                     board[row][col] = 'O'
@@ -98,7 +97,7 @@ def play():
 
                 except ValueError:
                     print('Ошибка: введите число!')
-                    
+
             print_board(board)
 
             if check_winner(board):
@@ -112,5 +111,6 @@ def play():
         if ask_replay not in ['да', 'yes', 'д', 'y']:
             print('Хорошего дня', '\U0001F917')
             return
+
 
 play()
