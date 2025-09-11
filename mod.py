@@ -47,7 +47,7 @@ def play():
     board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
     player_move = 'X'
     while True:
-        
+
         print_board(board)
         try:
             player_input = int(
@@ -61,7 +61,7 @@ def play():
 
             board[row][col] = player_move
             print_board(board)
-            
+
             if check_winner(board):
                 print_board(board)
                 print(f'Игрок {player_move} победил!', "\U0001F60E")
@@ -69,9 +69,8 @@ def play():
             if check_draw(board):
                 print('Игра закончилась вничью!')
                 print_board(board)
-                
+
             player_move = 'O' if player_move == 'X' else 'X'
-            
 
             if check_draw(board) or check_winner(board):
                 ask_replay = input('Хотите сыграть ещё раз? ').lower()
