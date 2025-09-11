@@ -46,65 +46,41 @@ def check_cell_move(board, row, col, users_move):
 def play():
     while True:
         board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+
         while True:
+            current_player = 'X'
             print_board(board)
-
             while True:
                 try:
-                    player_x = int(
-                        input('Игрок №1 - X. Введите номер клетки 1-9: '))
 
-                    row = (player_x - 1) // 3
-                    col = (player_x - 1) % 3
+                    player_input = int(
+                        input(f'Игрок {current_player} Введите номер клетки 1-9: '))
 
-                    if check_cell_move(board, row, col, player_x):
+                    row = (player_input - 1) // 3
+                    col = (player_input - 1) % 3
+
+                    if check_cell_move(board, row, col, player_input):
                         continue
 
-                    board[row][col] = 'X'
-                    break
+                    board[row][col] = current_player
+                    print_board(board)
+
+                    if check_winner(board):
+                        print('Игрок №2 победил!', "\U0001F60E")
+                        break
+
+                    if check_draw(board):
+                        break
+
+                    current_player = 'O' if current_player == 'X' else 'X'
 
                 except ValueError:
                     print('Ошибка: введите число!')
 
-            print_board(board)
-
-            if check_winner(board):
-                print('Игрок №1 победил!', "\U0001F60E")
-                break
-
-            if check_draw(board):
-                break
-
-            while True:
-                try:
-                    player_o = int(
-                        input('Игрок №2 - O. Введите номер клетки 1-9: '))
-
-                    row = (player_o - 1) // 3
-                    col = (player_o - 1) % 3
-
-                    if check_cell_move(board, row, col, player_o):
-                        continue
-
-                    board[row][col] = 'O'
-                    break
-
-                except ValueError:
-                    print('Ошибка: введите число!')
-
-            print_board(board)
-
-            if check_winner(board):
-                print('Игрок №2 победил!', "\U0001F60E")
-                break
-
-            if check_draw(board):
-                break
-
-        ask_replay = input('Хотите сыграть ещё раз? ').lower()
-        if ask_replay not in ['да', 'yes', 'д', 'y']:
-            print('Хорошего дня', '\U0001F917')
-            return
+            ask_replay = input('Хотите сыграть ещё раз? ').lower()
+            if ask_replay not in ['да', 'yes', 'д', 'y']:
+                print('Хорошего дня', '\U0001F917')
+                return
 
 
 play()
